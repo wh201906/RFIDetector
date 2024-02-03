@@ -30,3 +30,6 @@ fp-info-cache
 
 # Gerber output
 production/
+
+# Test results
+!**/test_results/*.csv
