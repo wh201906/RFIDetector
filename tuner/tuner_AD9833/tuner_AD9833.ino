@@ -1,12 +1,12 @@
 // Using AD9833 and Seeeduino XIAO for tuning
 //
-// 1: ADC_IN
-// 7: SPI_CS(FSYNC)
-// 8: SPI_SCK(SCLK)
-// 10: SPI_MOSI(SDATA)
+// 8: ADC_IN
+// 2: SPI_CS(FSYNC)
+// 1: SPI_SCK(SCLK)
+// 0: SPI_MOSI(SDATA)
 #include "AD9833.h"
 
-AD9833 ad9833(7);
+AD9833 ad9833(2, 0, 1);
 
 void setup() {
   Serial.begin(115200);
@@ -34,7 +34,7 @@ void loop() {
   for (int i = 0; i < 1000; i++) {
     // It works as long as the period there is not the multiple of the waveform's period.
     // The period there is a little bit longer than 1us, which is expected.
-    int val = analogRead(1);
+    int val = analogRead(8);
     // SAMD21 ADC max speed: 350ksps -> 2.86us
     delayMicroseconds(3);
     maxVal = val > maxVal ? val : maxVal;
